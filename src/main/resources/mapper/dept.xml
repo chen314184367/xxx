@@ -1,0 +1,36 @@
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<!-- 建立类与表的映射 class 对应实体类的全限定名，其中的table 指实体类队形的数据库表名，不谢的话默认和实体类名一致 -->
+	<class name="COM.ZY.MODEL.dept">
+		<!-- name对应实体类中的字段名称 column对应数据库中的列名。 -->
+		<!-- id 属性是独特的 它可以与表中的主键建立连接 -->
+		<id name="deptno" column="deptno">
+			<generator class="native" />
+		</id>
+		<property name="dname" column="dname"></property>
+		<property name="loc" column="loc"></property>
+		<!-- set 元素代表 指代一个set集合，
+		cascade 是指级联操作：
+		1.save-update：指当对象在保存以及修改操作的时候，可以自动遍历这个集合，
+		并对这个集合进行操作。a.持久化瞬时态对象，b.修改持久化对象
+		2.delete：指在删除的时候，可以自动遍历这个集合并对集合的对象进行修改操作
+		3.all：（save-update-delete ）
+		4.delete-orphan(孤儿）：修改主对象的时候自动删除没有关系的对象。
+		5.all-delete-orphan:（save-update-delete-delete-orphan）
+		其中name对应于集合名，并包含两个元素
+		key：代表在many一方的表中哪一个外键对应关系
+		one-to-many： 代表 多的类的那一方
+		 -->
+		<set name="emps" cascade="save-update" inverse="true">
+			<!-- inverser -->
+			<key column="deptno"></key>
+			<one-to-many class="COM.ZY.MODEL.emp" />
+		</set>
+		<!-- <property name="sex" column="u_sex"></property> -->
+	</class>
+
+</hibernate-mapping>
+    

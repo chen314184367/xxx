@@ -1,0 +1,23 @@
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<!-- 建立类与表的映射 class 对应实体类的全限定名，其中的table 指实体类队形的数据库表名，不谢的话默认和实体类名一致 -->
+	<class name="COM.ZY.MODEL.emp">
+		<!-- name对应实体类中的字段名称 column对应数据库中的列名。 -->
+		<!-- id 属性是独特的 它可以与表中的主键建立连接 -->
+		<id name="empno" column="empno">
+			<generator class="native" />
+		</id>
+		<property name="createDate" column="createDate"></property>
+		<!-- <many-to-one name="dept" column="deptno"/> -->
+		<property name="ename" column="ename"></property>
+		<property name="sal" column="sal"></property>
+		<property name="deptno" column="deptno"></property>
+		
+		
+	</class>
+
+</hibernate-mapping>
+    
